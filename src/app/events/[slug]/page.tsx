@@ -3,12 +3,13 @@ import { events } from "@/data/events";
 import EventGallery from "@/components/events/EventGallery";
 
 
-export default function EventDetailsPage({
+export default async function EventDetailsPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const event = events.find((e) => e.slug === params.slug);
+  const { slug } = await params;
+  const event = events.find((e) => e.slug === slug);
 
   if (!event) {
     return (

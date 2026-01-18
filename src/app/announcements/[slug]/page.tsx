@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { announcements } from "@/data/announcements";
 
-export default function AnnouncementDetailsPage({
+export default async function AnnouncementDetailsPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const a = announcements.find((x) => x.slug === params.slug);
+  const { slug } = await params;
+  const a = announcements.find((x) => x.slug === slug);
+
 
   if (!a) {
     return (

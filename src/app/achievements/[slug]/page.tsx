@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { achievements } from "@/data/achievements";
 
-export default function AchievementDetailsPage({
+export default async function AchievementDetailsPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const a = achievements.find((x) => x.slug === params.slug);
+  const { slug } = await params;
+  const a = achievements.find((x) => x.slug === slug);
 
   if (!a) {
     return (
