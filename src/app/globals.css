@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LIGHT THEME (default) — white + blue */
+:root {
+  --bg: #F8FAFC;
+  --fg: #0F172A;
+
+  --card: #FFFFFF;
+  --card-fg: #0F172A;
+
+  --muted: #F1F5F9;
+  --muted-fg: #475569;
+
+  --border: #E2E8F0;
+
+  /* Brand */
+  --primary: #2563EB;      /* blue */
+  --primary-fg: #FFFFFF;
+
+  --accent: #0B1F3B;       /* deep navy */
+  --accent-fg: #FFFFFF;
+
+  /* Translucent helpers (8-digit hex) */
+  --header-bg: #FFFFFFD9;  /* ~85% */
+  --glass-10: #FFFFFF1A;
+  --glass-15: #FFFFFF26;
+}
+
+/* DARK THEME overrides */
+.dark {
+  --bg: #070B14;
+  --fg: #F8FAFC;
+
+  --card: #0B1220;
+  --card-fg: #F8FAFC;
+
+  --muted: #0F172A;
+  --muted-fg: #94A3B8;
+
+  --border: #1E293B;
+
+  --primary: #3B82F6;
+  --primary-fg: #070B14;
+
+  --accent: #F8FAFC;
+  --accent-fg: #070B14;
+
+  --header-bg: #0B1220D9;
+  --glass-10: #0000001A;
+  --glass-15: #00000026;
+}
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
