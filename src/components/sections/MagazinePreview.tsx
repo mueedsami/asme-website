@@ -1,21 +1,40 @@
-import Link from "next/link";
-import { magazines } from "@/data/magazines";
+"use client";
 
-export default function MagazinePage() {
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { magazines, type MagazineIssue } from "@/data/magazines";
+import MagazinePreviewModal from "@/components/magazines/MagazinePreviewModal";
+
+export default function MagazinesPreview() {
+  const issues = useMemo(() => magazines.slice(0, 2), []);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<MagazineIssue | null>(null);
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
-      <div>
-        <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
-          Magazine
-        </p>
-        <h1 className="mt-2 text-3xl font-semibold text-fg">All Issues</h1>
-        <p className="mt-2 text-muted-fg">
-          Browse our annual publications and download full issues.
-        </p>
+    <section className="mx-auto max-w-6xl px-4 py-14">
+      <div className="flex items-end justify-between gap-4">
+        <div>
+          {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
+            Magazine
+          </p> */}
+          <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-fg">
+            Annual Publications
+          </h2>
+          <p className="mt-2 text-sm text-muted-fg max-w-2xl">
+            Explore a preview of our annual magazines and download the full issue.
+          </p>
+        </div>
+
+        <Link
+          href="/magazine"
+          className="inline-flex items-center justify-center rounded-2xl bg-primary px-4 py-2 text-sm font-semibold text-primary-fg hover:opacity-95 transition"
+        >
+          View All
+        </Link>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        {magazines.map((issue) => (
+      <div className="mt-7 grid gap-4 sm:grid-cols-2">
+        {issues.map((issue) => (
           <div
             key={issue.slug}
             className="rounded-3xl border border-border bg-card p-6 shadow-sm"
@@ -32,11 +51,13 @@ export default function MagazinePage() {
                   {issue.description}
                 </p>
               </div>
+
               <div className="shrink-0 rounded-2xl border border-border bg-muted px-3 py-2 text-sm font-semibold text-fg">
-                Issue
+                30 pages
               </div>
             </div>
 
+            {/* mini preview */}
             <div className="mt-5 grid grid-cols-3 gap-3">
               {issue.previewImages.slice(0, 3).map((src, i) => (
                 <div
@@ -54,6 +75,16 @@ export default function MagazinePage() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
+              <button
+                onClick={() => {
+                  setActive(issue);
+                  setOpen(true);
+                }}
+                className="inline-flex items-center justify-center rounded-2xl border border-border bg-muted px-4 py-2 text-sm font-semibold text-fg hover:bg-card transition"
+              >
+                Preview
+              </button>
+
               <a
                 href={issue.pdfUrl}
                 download
@@ -72,6 +103,12 @@ export default function MagazinePage() {
           </div>
         ))}
       </div>
-    </div>
+
+      <MagazinePreviewModal
+        open={open}
+        onClose={() => setOpen(false)}
+        issue={active}
+      />
+    </section>
   );
 }

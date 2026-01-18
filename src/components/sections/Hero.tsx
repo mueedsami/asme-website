@@ -9,14 +9,15 @@ const placeholderSvg = `
       <stop offset="1" stop-color="#020617"/>
     </linearGradient>
 
+    <!-- BLUE glow (replaces the red) -->
     <radialGradient id="r1" cx="25%" cy="10%" r="60%">
-      <stop offset="0" stop-color="#D61F2C" stop-opacity="0.55"/>
-      <stop offset="1" stop-color="#D61F2C" stop-opacity="0"/>
+      <stop offset="0" stop-color="#2563EB" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
     </radialGradient>
 
     <radialGradient id="r2" cx="80%" cy="20%" r="55%">
-      <stop offset="0" stop-color="#94A3B8" stop-opacity="0.35"/>
-      <stop offset="1" stop-color="#94A3B8" stop-opacity="0"/>
+      <stop offset="0" stop-color="#60A5FA" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0"/>
     </radialGradient>
 
     <filter id="noise">
@@ -50,12 +51,14 @@ const placeholderSvg = `
 </svg>
 `;
 
-const bgDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(placeholderSvg)}`;
+const bgDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+  placeholderSvg
+)}`;
 
 export default function Hero() {
   return (
     <section className="relative min-h-[82vh] flex items-center overflow-hidden">
-      {/* Background image placeholder */}
+      {/* Background image placeholder + dark overlay */}
       <div
         className="absolute inset-0"
         style={{
@@ -69,12 +72,12 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* subtle top highlight */}
+      {/* subtle top highlight (BLUE now) */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 10%, rgba(214,31,44,0.22), transparent 45%)",
+            "radial-gradient(circle at 20% 10%, rgba(37,99,235,0.18), transparent 45%)",
         }}
         aria-hidden="true"
       />

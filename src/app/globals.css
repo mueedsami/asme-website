@@ -22,6 +22,11 @@
   --accent: #0B1F3B;       /* deep navy */
   --accent-fg: #FFFFFF;
 
+    /* Hero glow colors */
+  --hero-glow-1: #2563EB66; /* blue with alpha */
+  --hero-glow-2: #1D4ED866; /* deeper blue with alpha */
+  --hero-glow-3: #0B1F3B99; /* navy with alpha */
+
   /* Translucent helpers (8-digit hex) */
   --header-bg: #FFFFFFD9;  /* ~85% */
   --glass-10: #FFFFFF1A;
@@ -44,6 +49,12 @@
   --primary: #3B82F6;
   --primary-fg: #070B14;
 
+    /* Hero glow colors (dark) */
+  --hero-glow-1: #3B82F666;
+  --hero-glow-2: #2563EB66;
+  --hero-glow-3: #0B1220CC;
+
+
   --accent: #F8FAFC;
   --accent-fg: #070B14;
 
@@ -57,4 +68,39 @@ html, body { height: 100%; }
 body {
   background: var(--bg);
   color: var(--fg);
+}
+
+
+/* Paper texture (subtle) */
+.paper-texture {
+  background-color: #F7F1E6;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.65), rgba(255,255,255,0.20));
+  background-size: 18px 18px, 100% 100%;
+}
+
+/* Slight paper grain */
+.paper-grain {
+  position: relative;
+}
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.06),
+      rgba(0,0,0,0.06) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+.font-letter {
+  font-family: var(--font-letter);
 }

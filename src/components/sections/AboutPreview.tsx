@@ -22,17 +22,17 @@ export default function AboutPreview() {
         {/* Header row */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
+            {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
               About
-            </p>
+            </p> */}
             <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-fg">
               About the ASME IUT Student Section
             </h2>
-            <p className="mt-3 text-muted-fg leading-relaxed">
+            {/* <p className="mt-3 text-muted-fg leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
               ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
+            </p> */}
           </div>
 
           <div className="flex gap-3">
