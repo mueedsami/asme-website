@@ -57,7 +57,9 @@ const bgDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[82vh] flex items-center overflow-hidden">
+    // Pull the hero behind the fixed header so the transparent header
+    // sits on top of the hero (not on top of the white page background).
+    <section className="relative -mt-16 pt-16 min-h-[calc(82vh+4rem)] flex items-center overflow-hidden">
       {/* Background image placeholder + dark overlay */}
       <div
         className="absolute inset-0"

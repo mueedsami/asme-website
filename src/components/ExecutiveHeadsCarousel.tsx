@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { executivePanel } from "@/data/executivePanel";
+import { executivePanel, ExecMember } from "@/data/executivePanel";
 
-function byOrder(a: any, b: any) {
+function byOrder(a: ExecMember, b: ExecMember) {
   return (a.order ?? 999) - (b.order ?? 999);
 }
 
@@ -17,10 +17,30 @@ function initials(name: string) {
 }
 
 export default function ExecutiveHeadsCarousel() {
-  const heads = useMemo(
-    () => executivePanel.filter((m) => m.isHead).sort(byOrder),
-    []
-  );
+  const heads = useMemo(() => {
+    // If `isHead` isn't set yet in the dataset, derive department heads
+    // by selecting one lead per team.
+    const byTeam = new Map<string, ExecMember[]>();
+
+    for (const m of executivePanel) {
+      if (!m.team) continue;
+      if (m.team.toLowerCase() === "core") continue; // keep preview "department heads"
+      if (!byTeam.has(m.team)) byTeam.set(m.team, []);
+      byTeam.get(m.team)!.push(m);
+    }
+
+    const result: ExecMember[] = [];
+    for (const [team, members] of byTeam.entries()) {
+      members.sort(byOrder);
+      const explicit = members.find((x) => x.isHead);
+      const byRole = members.find((x) => /head/i.test(x.role));
+      const pick = explicit ?? byRole ?? members[0];
+      if (pick) result.push(pick);
+    }
+
+    // stable order
+    return result.sort((a, b) => (a.team ?? "").localeCompare(b.team ?? ""));
+  }, []);
 
   const [perView, setPerView] = useState(1);
   const [index, setIndex] = useState(0);
