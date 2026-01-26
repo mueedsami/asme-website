@@ -16,9 +16,9 @@ function InfoBox({ label, value }: { label: string; value: string }) {
 export default async function AchievementDetailsPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const a = achievements.find((x) => x.slug === slug);
 
   if (!a) {
