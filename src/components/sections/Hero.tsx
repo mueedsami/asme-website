@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import Reveal from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 const placeholderSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
@@ -9,7 +13,6 @@ const placeholderSvg = `
       <stop offset="1" stop-color="#020617"/>
     </linearGradient>
 
-    <!-- BLUE glow (replaces the red) -->
     <radialGradient id="r1" cx="25%" cy="10%" r="60%">
       <stop offset="0" stop-color="#2563EB" stop-opacity="0.42"/>
       <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
@@ -34,7 +37,6 @@ const placeholderSvg = `
   <rect width="1600" height="900" fill="url(#r1)"/>
   <rect width="1600" height="900" fill="url(#r2)"/>
 
-  <!-- subtle “group photo vibe” silhouettes -->
   <g opacity="0.22" fill="#0B1220">
     <circle cx="240" cy="690" r="80"/>
     <circle cx="360" cy="690" r="90"/>
@@ -51,14 +53,17 @@ const placeholderSvg = `
 </svg>
 `;
 
-const bgDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-  placeholderSvg
-)}`;
+const bgDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(placeholderSvg)}`;
 
 export default function Hero() {
+  const stats = [
+    { k: "Members", v: "—" },
+    { k: "Events", v: "—" },
+    { k: "Achievements", v: "—" },
+    { k: "Since", v: "—" },
+  ];
+
   return (
-    // Pull the hero behind the fixed header so the transparent header
-    // sits on top of the hero (not on top of the white page background).
     <section className="relative -mt-16 pt-16 min-h-[calc(82vh+4rem)] flex items-center overflow-hidden">
       {/* Background image placeholder + dark overlay */}
       <div
@@ -74,7 +79,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* subtle top highlight (BLUE now) */}
+      {/* subtle top highlight */}
       <div
         className="absolute inset-0"
         style={{
@@ -84,54 +89,67 @@ export default function Hero() {
         aria-hidden="true"
       />
 
+      {/* tiny “blueprint” hint in hero (very subtle, cheap to render) */}
+      <div
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)",
+          backgroundSize: "52px 52px",
+          maskImage: "radial-gradient(circle at 28% 18%, black 0%, transparent 62%)",
+        }}
+        aria-hidden="true"
+      />
+
       <div className="relative mx-auto max-w-6xl px-4 py-16">
         <div className="max-w-2xl">
-          <p className="text-white/80 text-sm tracking-wide">
-            Islamic University of Technology (IUT)
-          </p>
+          <Reveal>
+            <p className="text-white/80 text-sm tracking-wide">
+              Islamic University of Technology (IUT)
+            </p>
+          </Reveal>
 
-          <h1 className="mt-3 text-4xl sm:text-5xl font-semibold text-white tracking-tight">
-            ASME IUT Student Section
-          </h1>
+          <Reveal delay={0.05}>
+            <h1 className="mt-3 text-4xl sm:text-5xl font-semibold text-white tracking-tight">
+              ASME IUT Student Section
+            </h1>
+          </Reveal>
 
-          <p className="mt-4 text-white/80 text-base sm:text-lg leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <Reveal delay={0.08}>
+            <p className="mt-4 text-white/80 text-base sm:text-lg leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </Reveal>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Link
-              href="/announcements"
-              className="inline-flex justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-100 transition"
-            >
-              Announcements
-            </Link>
-
-            <Link
-              href="/contact"
-              className="inline-flex justify-center rounded-2xl bg-white/15 px-5 py-3 text-sm font-semibold text-white hover:bg-white/25 transition"
-            >
-              Get in Touch
-            </Link>
-          </div>
-
-          {/* quick stats (optional but classy) */}
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {[
-              { k: "Members", v: "—" },
-              { k: "Events", v: "—" },
-              { k: "Achievements", v: "—" },
-              { k: "Since", v: "—" },
-            ].map((s) => (
-              <div
-                key={s.k}
-                className="rounded-2xl bg-white/10 border border-white/15 px-4 py-3"
+          <Reveal delay={0.10}>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/announcements"
+                className="tech-hover inline-flex justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-100 active:scale-[0.99] transition"
               >
-                <div className="text-lg font-semibold text-white">{s.v}</div>
-                <div className="text-xs text-white/75">{s.k}</div>
-              </div>
+                Announcements
+              </Link>
+
+              <Link
+                href="/contact"
+                className="tech-hover inline-flex justify-center rounded-2xl bg-white/15 px-5 py-3 text-sm font-semibold text-white hover:bg-white/25 active:scale-[0.99] transition"
+              >
+                Get in Touch
+              </Link>
+            </div>
+          </Reveal>
+
+          <Stagger className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {stats.map((s) => (
+              <StaggerItem key={s.k}>
+                <div className="tech-hover rounded-2xl bg-white/10 border border-white/15 px-4 py-3">
+                  <div className="text-lg font-semibold text-white">{s.v}</div>
+                  <div className="text-xs text-white/75">{s.k}</div>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </div>
 

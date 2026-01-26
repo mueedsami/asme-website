@@ -87,7 +87,7 @@ export default function ExecutiveHeadsCarousel() {
     <div className="mt-6">
       <div className="flex items-center justify-between gap-3">
         <div className="text-sm text-muted-fg">
-          Department heads — tap to view details
+          Executive batch of 2025-2026
         </div>
 
         <div className="flex items-center gap-2">

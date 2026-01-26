@@ -17,7 +17,7 @@ export default function FromTheDeskPreview() {
             From the Desk
           </h2>
           <p className="mt-2 text-sm text-muted-fg max-w-2xl">
-            Official messages from advisors and leadership — presented in a formal letter format.
+            Official messages from advisors and leadership of the ASME IUT Student Section.
           </p>
         </div>
 

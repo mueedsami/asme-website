@@ -141,3 +141,10 @@ body {
   z-index: 0;
 }
 
+/* Subtle futuristic (mobile-safe) */
+.tech-hover {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.tech-hover:hover {
+  box-shadow: 0 0 0 1px var(--tech-soft);
+}
