@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { magazines } from "@/data/magazines";
+import SectionShell from "@/components/SectionShell";
 
 export default async function MagazineDetailsPage({
   params,
@@ -11,23 +12,26 @@ export default async function MagazineDetailsPage({
 
   if (!issue) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16">
+      <SectionShell glow="tlbr">
+        <div className="mx-auto max-w-3xl px-4 py-16">
         <h1 className="text-2xl font-semibold text-fg">Issue not found</h1>
         <p className="mt-2 text-muted-fg">This magazine issue does not exist.</p>
         <Link
-          href="/magazine"
+          href="/magazines"
           className="mt-6 inline-flex rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-fg"
         >
-          Back to Magazine
+          Back to Magazines
         </Link>
       </div>
+      </SectionShell>
     );
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
-      <Link href="/magazine" className="text-sm font-semibold text-fg hover:underline">
-        ← Back to Magazine
+    <SectionShell glow="tlbr">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+      <Link href="/magazines" className="text-sm font-semibold text-fg hover:underline">
+        ← Back to Magazines
       </Link>
 
       <div className="mt-6 rounded-3xl border border-border bg-card p-7 shadow-sm">
@@ -84,5 +88,6 @@ export default async function MagazineDetailsPage({
         </div>
       </div>
     </div>
+    </SectionShell>
   );
 }

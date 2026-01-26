@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fromTheDesk } from "@/data/fromTheDesk";
+import SectionShell from "@/components/SectionShell";
 
 export default async function DeskLetterPage({
   params,
@@ -11,7 +12,8 @@ export default async function DeskLetterPage({
 
   if (!m) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16">
+      <SectionShell glow="tlbr">
+        <div className="mx-auto max-w-3xl px-4 py-16">
         <h1 className="text-2xl font-semibold text-fg">Message not found</h1>
         <p className="mt-2 text-muted-fg">
           The message you are looking for does not exist.
@@ -23,11 +25,13 @@ export default async function DeskLetterPage({
           Back to Messages
         </Link>
       </div>
+      </SectionShell>
     );
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
+    <SectionShell glow="tlbr">
+      <div className="mx-auto max-w-5xl px-4 py-12">
       <Link
         href="/from-the-desk"
         className="text-sm font-semibold text-fg hover:underline"
@@ -41,8 +45,8 @@ export default async function DeskLetterPage({
           <div className="relative p-4 sm:p-8">
             {/* Letter sheet */}
             <div className="mx-auto max-w-3xl rounded-[28px] border border-border bg-white/85 backdrop-blur-sm shadow-xl">
-              {/* ✅ Apply curly font to the WHOLE letter */}
-              <div className="p-6 sm:p-10 font-letter text-[#1A1A1A]">
+              {/* Regular, readable font (no handwriting) */}
+              <div className="p-6 sm:p-10 font-sans text-[#1A1A1A]">
                 {/* Letter header */}
                 <div className="flex items-start gap-4">
                   <div className="min-w-0">
@@ -111,5 +115,6 @@ export default async function DeskLetterPage({
         </div>
       </div>
     </div>
+    </SectionShell>
   );
 }

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { magazines, type MagazineIssue } from "@/data/magazines";
 import MagazinePreviewModal from "@/components/magazines/MagazinePreviewModal";
+import SectionShell from "@/components/SectionShell";
 
 export default function MagazinesPreview() {
   const issues = useMemo(() => magazines.slice(0, 2), []);
@@ -11,7 +12,8 @@ export default function MagazinesPreview() {
   const [active, setActive] = useState<MagazineIssue | null>(null);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14">
+    <SectionShell glow="tlbr">
+      <div className="mx-auto max-w-6xl px-4 py-14">
       <div className="flex items-end justify-between gap-4">
         <div>
           {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
@@ -26,7 +28,7 @@ export default function MagazinesPreview() {
         </div>
 
         <Link
-          href="/magazine"
+          href="/magazines"
           className="inline-flex items-center justify-center rounded-2xl bg-primary px-4 py-2 text-sm font-semibold text-primary-fg hover:opacity-95 transition"
         >
           View All
@@ -109,6 +111,7 @@ export default function MagazinesPreview() {
         onClose={() => setOpen(false)}
         issue={active}
       />
-    </section>
+      </div>
+    </SectionShell>
   );
 }

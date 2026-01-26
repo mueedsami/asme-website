@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { achievements } from "@/data/achievements";
+import SectionShell from "@/components/SectionShell";
 
 export default function AchievementsPreview() {
   const latest = achievements.slice(0, 3);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-6xl px-4 py-14">
       <div className="flex items-end justify-between gap-4">
         <div>
           {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
@@ -115,6 +117,7 @@ export default function AchievementsPreview() {
           </Link>
         ))}
       </div>
-    </section>
+      </div>
+    </SectionShell>
   );
 }

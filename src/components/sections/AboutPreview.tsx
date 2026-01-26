@@ -1,23 +1,9 @@
 import Link from "next/link";
+import SectionShell from "@/components/SectionShell";
 
 export default function AboutPreview() {
   return (
-    <section className="relative overflow-hidden">
-      {/* Soft background polish */}
-      <div className="absolute inset-0 -z-10">
-        <div className="h-full w-full bg-bg" />
-        <div
-          className="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-30"
-          style={{ background: "var(--primary)" }}
-          aria-hidden="true"
-        />
-        <div
-          className="absolute -bottom-28 -right-24 h-80 w-80 rounded-full blur-3xl opacity-15"
-          style={{ background: "var(--accent)" }}
-          aria-hidden="true"
-        />
-      </div>
-
+    <SectionShell glow="tlbr">
       <div className="mx-auto max-w-6xl px-4 py-16">
         {/* Header row */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
@@ -116,7 +102,7 @@ export default function AboutPreview() {
           </div>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
 

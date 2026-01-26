@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { magazines } from "@/data/magazines";
+import SectionShell from "@/components/SectionShell";
 
 export default function MagazinePage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <SectionShell glow="tlbr">
+      <div className="mx-auto max-w-6xl px-4 py-12">
       <div>
         <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
           Magazine
@@ -63,7 +65,7 @@ export default function MagazinePage() {
               </a>
 
               <Link
-                href={`/magazine/${issue.slug}`}
+                href={`/magazines/${issue.slug}`}
                 className="inline-flex items-center justify-center rounded-2xl border border-border bg-muted px-4 py-2 text-sm font-semibold text-fg hover:bg-card transition"
               >
                 Open page
@@ -73,5 +75,6 @@ export default function MagazinePage() {
         ))}
       </div>
     </div>
+    </SectionShell>
   );
 }

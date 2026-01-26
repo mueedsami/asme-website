@@ -1,3 +1,4 @@
+import SectionShell from "@/components/SectionShell";
 import {
   contactStudents,
   contactOrganizations,
@@ -7,7 +8,8 @@ import {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <SectionShell glow="tlbr">
+      <div className="mx-auto max-w-6xl px-4 py-12">
       <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
         Contact
       </p>
@@ -27,7 +29,7 @@ export default function ContactPage() {
 
           <div className="mt-6 text-sm font-semibold text-fg">Social</div>
           <div className="mt-3 flex flex-wrap gap-2">
-            {socialLinks.map((s) => (
+            {socialLinks.map((s: { label: string; href: string }) => (
               <a
                 key={s.label}
                 href={s.href}
@@ -97,5 +99,6 @@ export default function ContactPage() {
         For urgent requests, please include your name, organization (if applicable), and a clear subject.
       </div>
     </div>
+    </SectionShell>
   );
 }

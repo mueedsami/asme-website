@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { fromTheDesk } from "@/data/fromTheDesk";
+import SectionShell from "@/components/SectionShell";
 
 export default function FromTheDeskPreview() {
   const featured = fromTheDesk.slice(0, 3);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-6xl px-4 py-14">
       <div className="flex items-end justify-between gap-4">
         <div>
           {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
@@ -61,6 +63,7 @@ export default function FromTheDeskPreview() {
           </Link>
         ))}
       </div>
-    </section>
+      </div>
+    </SectionShell>
   );
 }

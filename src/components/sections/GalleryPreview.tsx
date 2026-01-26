@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { galleryImages } from "@/data/gallery";
 import GalleryLightbox from "@/components/gallery/GalleryLightbox";
+import SectionShell from "@/components/SectionShell";
 
 export default function GalleryPreview() {
   const images = useMemo(() => galleryImages.slice(0, 8), []);
@@ -19,7 +20,8 @@ export default function GalleryPreview() {
   const next = () => setIdx((v) => (v + 1) % images.length);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-6xl px-4 py-14">
       <div className="flex items-end justify-between gap-4">
         <div>
           {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
@@ -92,6 +94,7 @@ export default function GalleryPreview() {
         onPrev={prev}
         onNext={next}
       />
-    </section>
+      </div>
+    </SectionShell>
   );
 }

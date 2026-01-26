@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef } from "react";
 import { events } from "@/data/events";
+import SectionShell from "@/components/SectionShell";
 
 function scrollByAmount(el: HTMLDivElement | null, amount: number) {
   if (!el) return;
@@ -15,7 +16,8 @@ export default function EventsPreview() {
   const featured = useMemo(() => events.slice(0, 6), []);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-6xl px-4 py-14">
       <div className="flex items-end justify-between gap-4">
         <div>
           {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
@@ -110,7 +112,8 @@ export default function EventsPreview() {
       <p className="mt-3 text-xs text-muted-fg md:hidden">
         Swipe horizontally to explore more →
       </p>
-    </section>
+      </div>
+    </SectionShell>
   );
 }
 

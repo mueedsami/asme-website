@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { achievements } from "@/data/achievements";
+import SectionShell from "@/components/SectionShell";
 
 export default function AchievementsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-6xl px-4 py-12">
       <div>
         <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
           Achievements
@@ -66,5 +68,6 @@ export default function AchievementsPage() {
         ))}
       </div>
     </div>
+    </SectionShell>
   );
 }

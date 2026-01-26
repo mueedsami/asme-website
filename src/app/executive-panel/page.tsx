@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { executivePanel, ExecMember } from "@/data/executivePanel";
+import SectionShell from "@/components/SectionShell";
 
 function initials(name: string) {
   const parts = name.trim().split(" ");
@@ -62,7 +63,8 @@ function PersonNode({ m, size }: { m: ExecMember; size: "head" | "member" }) {
   const imgSize = size === "head" ? 84 : 64;
 
   return (
-    <div className="flex flex-col items-center text-center">
+    <SectionShell glow="trbl">
+      <div className="flex flex-col items-center text-center">
       <Link
         href={`/executive-panel/${m.slug}`}
         className={[
@@ -104,6 +106,7 @@ function PersonNode({ m, size }: { m: ExecMember; size: "head" | "member" }) {
         View details
       </Link>
     </div>
+    </SectionShell>
   );
 }
 

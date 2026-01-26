@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { executivePanel } from "@/data/executivePanel";
+import SectionShell from "@/components/SectionShell";
 
 function initials(name: string) {
   const parts = name.trim().split(" ");
@@ -20,7 +21,8 @@ export default async function ExecutiveMemberPage({
 
   if (!member) {
     return (
-      <div className="mx-auto max-w-4xl px-4 py-14">
+      <SectionShell glow="trbl">
+        <div className="mx-auto max-w-4xl px-4 py-14">
         <h1 className="text-2xl font-semibold text-fg">Member not found</h1>
         <p className="mt-2 text-muted-fg">
           The executive profile you are looking for does not exist.
@@ -32,13 +34,15 @@ export default async function ExecutiveMemberPage({
           Back to Executive Panel
         </Link>
       </div>
+      </SectionShell>
     );
   }
 
   const sessionText = member.session ? member.session : "Current Session";
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-6xl px-4 py-12">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/executive-panel"
@@ -174,5 +178,6 @@ export default async function ExecutiveMemberPage({
         </div>
       </div>
     </div>
+    </SectionShell>
   );
 }

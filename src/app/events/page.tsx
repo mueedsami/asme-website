@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { events } from "@/data/events";
+import SectionShell from "@/components/SectionShell";
 
 export default function EventsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-6xl px-4 py-12">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
           <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
@@ -65,5 +67,6 @@ export default function EventsPage() {
         ))}
       </div>
     </div>
+    </SectionShell>
   );
 }

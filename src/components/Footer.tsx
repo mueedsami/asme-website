@@ -68,7 +68,7 @@ export default function Footer() {
               >
                 Achievements
               </Link>
-              <Link className="text-muted-fg hover:text-fg transition" href="/magazine">
+              <Link className="text-muted-fg hover:text-fg transition" href="/magazines">
                 Magazine
               </Link>
               <Link className="text-muted-fg hover:text-fg transition" href="/gallery">

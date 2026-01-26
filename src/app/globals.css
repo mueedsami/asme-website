@@ -19,13 +19,15 @@
   --primary: #2563EB;      /* blue */
   --primary-fg: #FFFFFF;
 
-  --accent: #0B1F3B;       /* deep navy */
+  --accent: #2563EB;      /* blue */
   --accent-fg: #FFFFFF;
 
     /* Hero glow colors */
-  --hero-glow-1: #2563EB66; /* blue with alpha */
-  --hero-glow-2: #1D4ED866; /* deeper blue with alpha */
-  --hero-glow-3: #0B1F3B99; /* navy with alpha */
+  /* Hero glow colors */
+  --hero-glow-1: #2563EB;      /* blue */
+  --hero-glow-2: #2563EB;      /* blue */  /* THIS is the bottom glow */
+  --hero-glow-3: #2563EB;      /* blue */
+
 
   /* Translucent helpers (8-digit hex) */
   --header-bg: #FFFFFFD9;  /* ~85% */
@@ -50,10 +52,9 @@
   --primary-fg: #070B14;
 
     /* Hero glow colors (dark) */
-  --hero-glow-1: #3B82F666;
-  --hero-glow-2: #2563EB66;
-  --hero-glow-3: #0B1220CC;
-
+  --hero-glow-1: rgba(59, 130, 246, 0.55);
+  --hero-glow-2: rgba(37, 99, 235, 0.75);
+  --hero-glow-3: rgba(59, 130, 246, 0.20);
 
   --accent: #F8FAFC;
   --accent-fg: #070B14;

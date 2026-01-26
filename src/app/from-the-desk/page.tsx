@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { fromTheDesk } from "@/data/fromTheDesk";
+import SectionShell from "@/components/SectionShell";
 
 export default function FromTheDeskPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <SectionShell glow="tlbr">
+      <div className="mx-auto max-w-6xl px-4 py-12">
       <div>
         <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
           From the Desk
@@ -44,5 +46,6 @@ export default function FromTheDeskPage() {
         ))}
       </div>
     </div>
+    </SectionShell>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { events } from "@/data/events";
 import EventGallery from "@/components/events/EventGallery";
+import SectionShell from "@/components/SectionShell";
 
 
 export default async function EventDetailsPage({
@@ -13,7 +14,8 @@ export default async function EventDetailsPage({
 
   if (!event) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16">
+      <SectionShell glow="trbl">
+        <div className="mx-auto max-w-3xl px-4 py-16">
         <h1 className="text-2xl font-semibold text-fg">Event not found</h1>
         <p className="mt-2 text-muted-fg">
           The event you are looking for does not exist.
@@ -25,11 +27,13 @@ export default async function EventDetailsPage({
           Back to Events
         </Link>
       </div>
+      </SectionShell>
     );
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12">
+    <SectionShell glow="trbl">
+      <div className="mx-auto max-w-4xl px-4 py-12">
       <Link href="/events" className="text-sm font-semibold text-fg hover:underline">
         ← Back to Events
       </Link>
@@ -83,5 +87,6 @@ export default async function EventDetailsPage({
         </div>
       </div>
     </div>
+    </SectionShell>
   );
 }

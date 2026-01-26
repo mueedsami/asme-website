@@ -1,9 +1,11 @@
 import Link from "next/link";
 import ExecutiveHeadsCarousel from "@/components/ExecutiveHeadsCarousel";
+import SectionShell from "@/components/SectionShell";
 
 export default function ExecutiveHeadsPreview() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14">
+    <SectionShell glow="tlbr">
+      <div className="mx-auto max-w-6xl px-4 py-14">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           {/* <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
@@ -26,6 +28,7 @@ export default function ExecutiveHeadsPreview() {
       </div>
 
       <ExecutiveHeadsCarousel />
-    </section>
+      </div>
+    </SectionShell>
   );
 }
