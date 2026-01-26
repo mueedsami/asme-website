@@ -28,6 +28,8 @@
   --hero-glow-2: #2563EB;      /* blue */  /* THIS is the bottom glow */
   --hero-glow-3: #2563EB;      /* blue */
 
+  --tech: #22D3EE;          /* cyan */
+  --tech-soft: #22D3EE33;   /* cyan glow */
 
   /* Translucent helpers (8-digit hex) */
   --header-bg: #FFFFFFD9;  /* ~85% */
@@ -50,6 +52,9 @@
 
   --primary: #3B82F6;
   --primary-fg: #070B14;
+
+  --tech: #67E8F9;
+  --tech-soft: #67E8F933;
 
     /* Hero glow colors (dark) */
   --hero-glow-1: rgba(59, 130, 246, 0.55);
@@ -105,3 +110,34 @@ body {
 .font-letter {
   font-family: var(--font-letter);
 }
+
+.blueprint-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.blueprint-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05; /* keep tiny for mobile */
+  background-image:
+    linear-gradient(to right, rgba(37,99,235,0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37,99,235,0.35) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at 30% 20%, black 0%, transparent 60%);
+  z-index: 0;
+}
+
+.blueprint-corners::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  pointer-events: none;
+  opacity: 0.35;
+  border: 1px dashed rgba(37,99,235,0.25);
+  border-radius: 24px;
+  z-index: 0;
+}
+

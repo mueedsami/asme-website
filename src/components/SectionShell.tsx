@@ -44,7 +44,10 @@ export default function SectionShell({
         />
       </div>
 
-      {children}
+      {/* ✅ Blueprint layer + corner marks (no bleed, content above it) */}
+      <div className="relative blueprint-bg blueprint-corners">
+        <div className="relative z-10">{children}</div>
+      </div>
     </section>
   );
 }
