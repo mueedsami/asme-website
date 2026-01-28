@@ -12,12 +12,12 @@ export type EventItem = {
 export const events: EventItem[] = [
   {
     slug: "orientation-2026",
-    title: "ASME IUT Orientation 2026",
+    title: "AspireME",
     date: "January 2026",
     location: "IUT Campus",
     category: "Orientation",
-    excerpt:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    excerpt: "ASpireME was organized to give Batch ’24 a warm welcome into the ASME IUT Student Section family, offering a glimpse of the exciting journey ahead and the opportunities within ASME.",
+      // "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     cover: "/placeholders/event-1.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
@@ -26,14 +26,14 @@ export const events: EventItem[] = [
     ],
   },
   {
-    slug: "design-challenge-2026",
-    title: "Design Challenge Workshop",
-    date: "February 2026",
-    location: "MPE Department",
-    category: "Workshop",
+    slug: "pixelate-2025",
+    title: "Pixelate 2025",
+    date: "06 January 2026",
+    location: "Online Submission",
+    category: "Design Competition",
     excerpt:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud.",
-    cover: "/placeholders/event-2.jpg",
+      "Pixelate is a digital technical poster design competition organized by the ASME IUT Student Section. It invites participants to design posters on emerging and impactful STEM topics—communicating complex ideas in an engaging, accessible way.",
+    cover: "/placeholders/event-6.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
@@ -41,14 +41,14 @@ export const events: EventItem[] = [
     ],
   },
   {
-    slug: "industry-talk-1",
-    title: "Industry Talk: Engineering Careers",
-    date: "March 2026",
-    location: "Auditorium",
-    category: "Talk",
+    slug: "poster-design-guideline-session-2025",
+    title: "Guideline Session for Effective Poster Design",
+    date: "18 December 2025",
+    location: "IUT Campus",
+    category: "Session",
     excerpt:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit.",
-    cover: "/placeholders/event-3.jpg",
+      "A session on 'Guidelines for Effective Technical Digital Poster Presentation,' led by Vice-Chair Tasmiah Zaman. The session encouraged active participation and fostered a dynamic, collaborative learning environment.",
+    cover: "/placeholders/event-5.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
@@ -56,13 +56,13 @@ export const events: EventItem[] = [
     ],
   },
   {
-    slug: "technical-tour-2026",
-    title: "Technical Tour (Factory Visit)",
-    date: "April 2026",
-    location: "Outside Campus",
-    category: "Tour",
+    slug: "industrial-tour-akij-bakers-2025",
+    title: "Industrial Tour",
+    date: "25 May 2025",
+    location: "Akij Bakers Limited",
+    category: "Industrial Visit",
     excerpt:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident.",
+      "A valuable opportunity for students to see industrial manufacturing in practice and connect classroom learning with real-world processes. Participants toured key factory areas, observed modern machinery, and learned about complex production techniques.",
     cover: "/placeholders/event-4.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
@@ -71,18 +71,37 @@ export const events: EventItem[] = [
     ],
   },
   {
-    slug: "research-night-2026",
-    title: "Research Night & Poster Session",
-    date: "May 2026",
-    location: "IUT",
-    category: "Showcase",
+    slug: "aspireme-2024",
+    title: "ASpireME",
+    date: "07 October 2024",
+    location: "IUT Auditorium",
+    category: "Orientation Program",
     excerpt:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis.",
-    cover: "/placeholders/event-5.jpg",
+      "ASpireME was organized to give Batch ’23 a warm welcome into the ASME IUT Student Section family, offering a glimpse of the exciting journey ahead and the opportunities within ASME.",
+    cover: "/placeholders/event-3.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
       "/placeholders/event-1-3.jpg",
     ],
   },
+  {
+    slug: "pixelate-2024",
+    title: "Pixelate 2024",
+    date: "15 April 2024",
+    location: "Online Submission",
+    category: "Design Competition",
+    excerpt:
+      "Pixelate is an Intra-IUT digital technical poster design competition focused on STEM topics. Students turn the latest breakthroughs into high-impact visual narratives—making complex engineering concepts impossible to ignore through world-class digital design.",
+    cover: "/placeholders/event-2.jpg",
+    gallery: [
+      "/placeholders/event-1-1.jpg",
+      "/placeholders/event-1-2.jpg",
+      "/placeholders/event-1-3.jpg",
+    ],
+  },
+  
+  
+  
+  
 ];

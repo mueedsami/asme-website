@@ -55,8 +55,7 @@ export default function AboutPreview() {
                     A platform for excellence and leadership
                   </div>
                   <p className="mt-2 text-sm text-muted-fg leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                    aute irure dolor in reprehenderit in voluptate velit esse.
+                    The ASME IUT Student Section (ASME IUT SS) at the Islamic University of Technology (IUT), Bangladesh, has been an active and evolving platform for students passionate about mechanical innovation and leadership. Focused on connecting classroom knowledge with real-world experience, the section organizes impactful activities such as technical workshops, hands-on industry visits, and signature events like Pixelate— a digital poster competition promoting creative engineering communication. It also conducts formal orientation and career development sessions for newly admitted students to help them understand ASME opportunities and prepare for their engineering journey.
                   </p>
                 </div>
                 <Mark />
@@ -82,19 +81,19 @@ export default function AboutPreview() {
             <div className="grid gap-4 sm:grid-cols-2">
               <PolishedCard
                 title="Mission"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam."
+                text="Our mission is to bridge classroom learning with real-world engineering by creating a practical, student-driven platform at IUT where members gain hands-on exposure through technical workshops, industry visits, competitions, and collaborative projects. "
               />
               <PolishedCard
                 title="Vision"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit."
+                text="To be a leading student-driven engineering community at IUT that inspires innovation, develops future-ready mechanical engineers, and creates meaningful impact through knowledge, creativity, and collaboration."
               />
               <PolishedCard
                 title="Goals"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident."
+                text="To empower IUT students to become skilled, industry-ready, and globally connected mechanical engineers by providing continuous opportunities for technical growth, leadership development, and impactful engineering activities."
               />
               <PolishedCard
                 title="Affiliation"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis."
+                text="The ASME IUT Student Section (ASME IUT SS) is an officially affiliated student section operating under the American Society of Mechanical Engineers (ASME). We follow ASME’s principles and student section guidelines while conducting activities at the Islamic University of Technology (IUT), Bangladesh."
               />
             </div>
 
@@ -137,10 +136,10 @@ function PolishedCard({ title, text }: { title: string; text: string }) {
         </div>
       </div>
 
-      <div className="mt-5 h-px w-full bg-border opacity-60" />
-      <p className="mt-4 text-xs text-muted-fg">
+      {/* <div className="mt-5 h-px w-full bg-border opacity-60" /> */}
+      {/* <p className="mt-4 text-xs text-muted-fg">
         Lorem ipsum dolor sit amet, consectetur.
-      </p>
+      </p> */}
     </div>
   );
 }

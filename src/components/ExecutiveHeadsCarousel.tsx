@@ -16,35 +16,53 @@ function initials(name: string) {
   return (a + b).toUpperCase();
 }
 
+function Avatar({ src, name }: { src?: string; name: string }) {
+  // If an image is missing from /public (common during setup), Next/Image will
+  // still render a blank box. We keep initials behind and hide the image on error.
+  const [ok, setOk] = useState(true);
+
+  return (
+    <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-border bg-card shrink-0">
+      <div className="absolute inset-0 grid place-items-center text-xs font-bold text-muted-fg">
+        {initials(name)}
+      </div>
+      {src ? (
+        <Image
+          src={src}
+          alt={name}
+          fill
+          sizes="56px"
+          onError={() => setOk(false)}
+          className={["object-cover", ok ? "opacity-100" : "opacity-0"].join(
+            " "
+          )}
+        />
+      ) : null}
+    </div>
+  );
+}
+
 export default function ExecutiveHeadsCarousel() {
+  // Home page preview: show only the first 9 members in `order` sequence.
+  // (This matches the sheet-driven ordering and avoids any alphabetical sorting.)
   const heads = useMemo(() => {
-    // If `isHead` isn't set yet in the dataset, derive department heads
-    // by selecting one lead per team.
-    const byTeam = new Map<string, ExecMember[]>();
-
-    for (const m of executivePanel) {
-      if (!m.team) continue;
-      if (m.team.toLowerCase() === "core") continue; // keep preview "department heads"
-      if (!byTeam.has(m.team)) byTeam.set(m.team, []);
-      byTeam.get(m.team)!.push(m);
-    }
-
-    const result: ExecMember[] = [];
-    for (const [team, members] of byTeam.entries()) {
-      members.sort(byOrder);
-      const explicit = members.find((x) => x.isHead);
-      const byRole = members.find((x) => /head/i.test(x.role));
-      const pick = explicit ?? byRole ?? members[0];
-      if (pick) result.push(pick);
-    }
-
-    // stable order
-    return result.sort((a, b) => (a.team ?? "").localeCompare(b.team ?? ""));
+    return [...executivePanel].sort(byOrder).slice(0, 9);
   }, []);
 
   const [perView, setPerView] = useState(1);
-  const [index, setIndex] = useState(0);
-  const maxIndex = Math.max(0, heads.length - perView);
+  // Slide by *page* (not by single card) so dots represent pages (e.g., 9 items
+  // with 3-per-view => 3 dots, not 7).
+  const [page, setPage] = useState(0);
+
+  const pages = useMemo(() => {
+    const out: ExecMember[][] = [];
+    for (let i = 0; i < heads.length; i += perView) {
+      out.push(heads.slice(i, i + perView));
+    }
+    return out;
+  }, [heads, perView]);
+
+  const maxPage = Math.max(0, pages.length - 1);
 
   // responsive cards-per-view
   useEffect(() => {
@@ -63,25 +81,25 @@ export default function ExecutiveHeadsCarousel() {
 
   // keep index valid when perView changes
   useEffect(() => {
-    setIndex((i) => Math.min(i, Math.max(0, heads.length - perView)));
-  }, [perView, heads.length]);
+    setPage((p) => Math.min(p, Math.max(0, pages.length - 1)));
+  }, [perView, pages.length]);
 
   // auto slide every 4s
   useEffect(() => {
-    if (heads.length <= perView) return;
+    if (pages.length <= 1) return;
     const t = window.setInterval(() => {
-      setIndex((i) => (i >= maxIndex ? 0 : i + 1));
+      setPage((p) => (p >= maxPage ? 0 : p + 1));
     }, 4000);
     return () => window.clearInterval(t);
-  }, [heads.length, perView, maxIndex]);
+  }, [pages.length, maxPage]);
 
-  const goPrev = () => setIndex((i) => (i <= 0 ? maxIndex : i - 1));
-  const goNext = () => setIndex((i) => (i >= maxIndex ? 0 : i + 1));
+  const goPrev = () => setPage((p) => (p <= 0 ? maxPage : p - 1));
+  const goNext = () => setPage((p) => (p >= maxPage ? 0 : p + 1));
 
   if (!heads.length) return null;
 
-  const trackWidth = `${(heads.length * 100) / perView}%`;
-  const translate = `translateX(-${index * (100 / perView)}%)`;
+  const trackWidth = `${pages.length * 100}%`;
+  const translate = `translateX(-${page * (100 / pages.length)}%)`;
 
   return (
     <div className="mt-6">
@@ -115,62 +133,62 @@ export default function ExecutiveHeadsCarousel() {
           className="flex transition-transform duration-500 ease-out"
           style={{ width: trackWidth, transform: translate }}
         >
-          {heads.map((m) => (
+          {pages.map((group, gi) => (
             <div
-              key={m.slug}
+              key={gi}
               className="p-4 sm:p-5"
-              style={{ width: `${100 / heads.length}%` }} // each item shares track width
+              style={{ width: `${100 / pages.length}%` }}
             >
-              <Link
-                href={`/executive-panel/${m.slug}`}
-                className="group block rounded-[24px] border border-border bg-muted p-5 hover:bg-card transition"
+              <div
+                className={[
+                  "flex gap-4",
+                  group.length < perView ? "justify-center" : "justify-between",
+                ].join(" ")}
               >
-                <div className="flex items-start gap-4">
-                  <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-border bg-card shrink-0">
-                    <div className="absolute inset-0 grid place-items-center text-xs font-bold text-muted-fg">
-                      {initials(m.name)}
-                    </div>
-                    <Image
-                      src={m.photo}
-                      alt={m.name}
-                      fill
-                      sizes="56px"
-                      className="object-cover"
-                    />
-                  </div>
+                {group.map((m) => (
+                  <div key={m.slug} className="w-full max-w-[22rem] flex-1">
+                    <Link
+                      href={`/executive-panel/${m.slug}`}
+                      className="group block rounded-[24px] border border-border bg-muted p-5 hover:bg-card transition"
+                    >
+                      <div className="flex items-start gap-4">
+                        <Avatar src={m.photo} name={m.name} />
 
-                  <div className="min-w-0">
-                    <div className="truncate text-base font-semibold text-fg">
-                      {m.name}
-                    </div>
-                    <div className="text-sm text-muted-fg">{m.role}</div>
-                    <div className="mt-1 text-xs text-muted-fg">
-                      {m.team}
-                      {m.session ? ` • ${m.session}` : ""}
-                    </div>
-                  </div>
-                </div>
+                        <div className="min-w-0">
+                          <div className="truncate text-base font-semibold text-fg">
+                            {m.name}
+                          </div>
+                          <div className="text-sm text-muted-fg">{m.role}</div>
+                          <div className="mt-1 text-xs text-muted-fg">
+                            {m.team}
+                            {m.session ? ` • ${m.session}` : ""}
+                          </div>
+                        </div>
+                      </div>
 
-                <div className="mt-4 text-xs font-semibold text-primary">
-                  View details →
-                </div>
-              </Link>
+                      <div className="mt-4 text-xs font-semibold text-primary">
+                        View details →
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* dots */}
-      {heads.length > perView && (
+      {pages.length > 1 && (
         <div className="mt-4 flex justify-center gap-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+          {Array.from({ length: pages.length }).map((_, i) => (
             <button
               key={i}
               type="button"
-              onClick={() => setIndex(i)}
+              onClick={() => setPage(i)}
               className={[
                 "h-2 rounded-full transition",
-                i === index ? "w-6 bg-primary" : "w-2 bg-border",
+                i === page ? "w-6 bg-primary" : "w-2 bg-border",
               ].join(" ")}
               aria-label={`Go to slide ${i + 1}`}
             />

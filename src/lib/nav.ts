@@ -6,13 +6,13 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Events", href: "/events" },
   {
-    label: "Panel",
+    label: "Notices",
     children: [
       { label: "Announcements", href: "/announcements" },
-      { label: "Achievements", href: "/achievements" },
       { label: "From the Desk", href: "/from-the-desk" },
     ],
   },
+  { label: "Achievements", href: "/achievements" },
   { label: "Executive Panel", href: "/executive-panel" },
   { label: "Magazines", href: "/magazines" },
   { label: "Gallery", href: "/gallery" },

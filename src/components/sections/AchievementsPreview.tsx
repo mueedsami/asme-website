@@ -82,33 +82,48 @@ export default function AchievementsPreview() {
               </p>
 
               {/* Winners “2.5” */}
-              <div className="mt-5">
-                <div className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
-                  Winners
-                </div>
+              {/* Winners “2.5” */}
+<div className="mt-5">
+  <div className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
+    Winners
+  </div>
 
-                <div className="mt-3 grid grid-cols-3 gap-2">
-                  {a.winners.slice(0, 2).map((w, idx) => (
-                    <div
-                      key={`${a.slug}-w-${idx}`}
-                      className="rounded-2xl border border-border bg-muted px-3 py-3"
-                    >
-                      <div className="text-sm font-semibold text-fg truncate">
-                        {w.name}
-                      </div>
-                      <div className="mt-1 text-xs text-muted-fg truncate">
-                        {w.role}
-                      </div>
-                    </div>
-                  ))}
+  {(() => {
+    const visible = a.winners.slice(0, 2);
+    const remaining = a.winners.length - visible.length;
 
-                  <div className="rounded-2xl border border-border bg-muted px-3 py-3 flex items-center justify-center">
-                    <div className="text-sm font-semibold text-fg">
-                      +{Math.max(0, a.winners.length - 2)} more
-                    </div>
-                  </div>
-                </div>
-              </div>
+    return (
+      <div
+        className={`mt-3 grid gap-2 ${
+          remaining > 0 ? "grid-cols-3" : "grid-cols-2"
+        }`}
+      >
+        {visible.map((w, idx) => (
+          <div
+            key={`${a.slug}-w-${idx}`}
+            className="rounded-2xl border border-border bg-muted px-3 py-3"
+          >
+            <div className="text-sm font-semibold text-fg truncate">
+              {w.name}
+            </div>
+            <div className="mt-1 text-xs text-muted-fg truncate">
+              {w.role}
+            </div>
+          </div>
+        ))}
+
+        {remaining > 0 && (
+          <div className="rounded-2xl border border-border bg-muted px-3 py-3 flex items-center justify-center">
+            <div className="text-sm font-semibold text-fg">
+              +{remaining} more
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  })()}
+</div>
+
 
               <div className="mt-5 text-sm font-semibold text-fg">
                 View details →

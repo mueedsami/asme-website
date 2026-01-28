@@ -57,10 +57,10 @@ const bgDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(placeho
 
 export default function Hero() {
   const stats = [
-    { k: "Members", v: "—" },
-    { k: "Events", v: "—" },
-    { k: "Achievements", v: "—" },
-    { k: "Since", v: "—" },
+    { k: "Members", v: "100+" },
+    { k: "Events", v: "10+" },
+    { k: "Achievements", v: "15+" },
+    { k: "Since", v: "2017" },
   ];
 
   return (
@@ -117,8 +117,7 @@ export default function Hero() {
 
           <Reveal delay={0.08}>
             <p className="mt-4 text-white/80 text-base sm:text-lg leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ASME is a global community advancing mechanical engineering through innovation, collaboration, and knowledge sharing. At IUT, the ASME IUT Student Section connects classroom learning with real-world experience through workshops, industry visits, orientations, career sessions, and signature events like Pixelate—a digital poster competition that celebrates creative engineering communication.
             </p>
           </Reveal>
 

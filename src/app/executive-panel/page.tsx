@@ -14,8 +14,34 @@ function byOrder(a: ExecMember, b: ExecMember) {
   return (a.order ?? 999) - (b.order ?? 999);
 }
 
+function byOrderThenName(a: ExecMember, b: ExecMember) {
+  const d = (a.order ?? 999) - (b.order ?? 999);
+  if (d !== 0) return d;
+  return a.name.localeCompare(b.name);
+}
+
 function buildTeamTree(teamMembers: ExecMember[]) {
-  const head = teamMembers.find((m) => m.isHead) ?? null;
+  // Prefer a "root" (no reportsTo) with the lowest order as head.
+  // If a team has NO roots (everyone reports to someone outside this team),
+  // fall back to a flat list so nobody disappears.
+  const roots = teamMembers.filter((m) => !m.reportsTo);
+
+  // If there is an explicit head, use that.
+  const explicitHead = teamMembers.find((m) => m.isHead);
+
+  // If there are multiple independent roots and no explicit head,
+  // show a flat list (otherwise we'd hide everyone except the first "head").
+  if (!explicitHead && roots.length !== 1) {
+    return { head: null, levels: [teamMembers.slice().sort(byOrderThenName)] };
+  }
+
+  if (!roots.length && !explicitHead) {
+    return { head: null, levels: [teamMembers.slice().sort(byOrderThenName)] };
+  }
+
+  const head = (explicitHead ? [explicitHead] : roots)
+    .slice()
+    .sort(byOrderThenName)[0] ?? null;
 
   const childrenMap = new Map<string, ExecMember[]>();
   for (const m of teamMembers) {
@@ -24,7 +50,7 @@ function buildTeamTree(teamMembers: ExecMember[]) {
     childrenMap.get(m.reportsTo)!.push(m);
   }
   for (const [k, arr] of childrenMap.entries()) {
-    arr.sort(byOrder);
+    arr.sort(byOrderThenName);
     childrenMap.set(k, arr);
   }
 
@@ -53,7 +79,7 @@ function buildTeamTree(teamMembers: ExecMember[]) {
     }
   } else {
     // fallback if no head declared
-    levels.push([...teamMembers].sort(byOrder));
+    levels.push([...teamMembers].sort(byOrderThenName));
   }
 
   return { head, levels };
@@ -111,14 +137,59 @@ function PersonNode({ m, size }: { m: ExecMember; size: "head" | "member" }) {
 }
 
 export default function ExecutivePanelPage() {
-  // Exclude "Core" (as you said there will be no core)
-  const teams = Array.from(
-    new Set(
-      executivePanel
-        .map((m) => m.team)
-        .filter((t) => t && t.toLowerCase() !== "core")
-    )
-  ).sort();
+  // --- Desired layout (as requested) ---
+  // 1) order 1 (solo)
+  // 2) order 2 (solo)
+  // 3) order 3 (solo)
+  // 4) order 4 + 5 (side-by-side)
+  // 5) order 10 + 11 + 12 (side-by-side)
+  // 6) from order 6 onwards: team-wise "tree" sections
+
+  const pickByOrders = (orders: number[]) =>
+    orders
+      .map((o) => executivePanel.find((m) => m.order === o))
+      .filter(Boolean) as ExecMember[];
+
+  const topSolo = pickByOrders([1, 2, 3]);
+  const topRow2 = pickByOrders([4, 5]);
+  const topRow3 = pickByOrders([10, 11, 12]);
+  const used = new Set([...topSolo, ...topRow2, ...topRow3].map((m) => m.slug));
+
+  // Temporary team overrides (so order-6 can become a department section without changing your sheet right now)
+  const TEAM_OVERRIDE: Record<string, string> = {
+    "shahriar-abdullah": "Finance",
+    "istiak-ahmed-anik": "Finance",
+  };
+
+  const rest = executivePanel
+    .filter((m) => !used.has(m.slug))
+    .map((m) => ({ ...m, team: TEAM_OVERRIDE[m.slug] ?? m.team }));
+
+  const teamsMap = rest.reduce<Record<string, ExecMember[]>>((acc, m) => {
+    const t = m.team?.trim() || "Other";
+    (acc[t] ||= []).push(m);
+    return acc;
+  }, {});
+
+  // Explicit team ordering (no alphabetical sorting)
+  const TEAM_ORDER = [
+    "Finance",
+    "Strategy and Planning",
+    "Logistics",
+    "Social Media",
+    "PR",
+    "Industry Relation",
+    "Creatives",
+    "Publication",
+    "Admin",
+    "Other",
+  ];
+
+  const teams = [
+    ...TEAM_ORDER.filter((t) => (teamsMap[t] ?? []).length > 0),
+    // any teams not in TEAM_ORDER go at the end, but still not alphabetically forced
+    ...Object.keys(teamsMap).filter((t) => !TEAM_ORDER.includes(t)),
+  ];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
@@ -129,15 +200,42 @@ export default function ExecutivePanelPage() {
         Executive Panel Structure
       </h1>
       <p className="mt-2 text-muted-fg max-w-3xl">
-        Departments are shown in a hierarchy: department head first, followed by
-        members under them.
+        Top leadership is shown first in the exact order you set. After that,
+        departments are shown in a hierarchy (head → reports).
       </p>
 
-      <div className="mt-10 space-y-12">
+      {/* --- Top pattern layout --- */}
+      <div className="mt-10 space-y-10">
+        {/* 1 / 2 / 3 (solo) */}
+        {topSolo.map((m) => (
+          <div key={m.slug} className="flex justify-center">
+            <PersonNode m={m} size="head" />
+          </div>
+        ))}
+
+        {/* 4 + 5 */}
+        {topRow2.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-8">
+            {topRow2.map((m) => (
+              <PersonNode key={m.slug} m={m} size="head" />
+            ))}
+          </div>
+        )}
+
+        {/* 10 + 11 + 12 */}
+        {topRow3.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-8">
+            {topRow3.map((m) => (
+              <PersonNode key={m.slug} m={m} size="head" />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* --- Team-wise tree (from order 6 onwards) --- */}
+      <div className="mt-14 space-y-12">
         {teams.map((team) => {
-          const teamMembers = executivePanel
-            .filter((m) => m.team === team)
-            .sort(byOrder);
+          const teamMembers = (teamsMap[team] ?? []).slice().sort(byOrderThenName);
 
           const { levels } = buildTeamTree(teamMembers);
 
