@@ -18,9 +18,9 @@ export const events: EventItem[] = [
     category: "Orientation",
     excerpt: "ASpireME was organized to give Batch ’24 a warm welcome into the ASME IUT Student Section family, offering a glimpse of the exciting journey ahead and the opportunities within ASME.",
       // "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    cover: "/placeholders/event-1.jpg",
+    cover: "/events/asME.jpg",
     gallery: [
-      "/placeholders/event-1-1.jpg",
+      "/events/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
       "/placeholders/event-1-3.jpg",
     ],
@@ -33,7 +33,7 @@ export const events: EventItem[] = [
     category: "Design Competition",
     excerpt:
       "Pixelate is a digital technical poster design competition organized by the ASME IUT Student Section. It invites participants to design posters on emerging and impactful STEM topics—communicating complex ideas in an engaging, accessible way.",
-    cover: "/placeholders/event-6.jpg",
+    cover: "/events/pix1.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
@@ -48,7 +48,7 @@ export const events: EventItem[] = [
     category: "Session",
     excerpt:
       "A session on 'Guidelines for Effective Technical Digital Poster Presentation,' led by Vice-Chair Tasmiah Zaman. The session encouraged active participation and fostered a dynamic, collaborative learning environment.",
-    cover: "/placeholders/event-5.jpg",
+    cover: "/events/tasmia_event.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
@@ -63,7 +63,7 @@ export const events: EventItem[] = [
     category: "Industrial Visit",
     excerpt:
       "A valuable opportunity for students to see industrial manufacturing in practice and connect classroom learning with real-world processes. Participants toured key factory areas, observed modern machinery, and learned about complex production techniques.",
-    cover: "/placeholders/event-4.jpg",
+    cover: "/events/industry_visit.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
@@ -78,7 +78,7 @@ export const events: EventItem[] = [
     category: "Orientation Program",
     excerpt:
       "ASpireME was organized to give Batch ’23 a warm welcome into the ASME IUT Student Section family, offering a glimpse of the exciting journey ahead and the opportunities within ASME.",
-    cover: "/placeholders/event-3.jpg",
+    cover: "/events/aspire24.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",
@@ -93,7 +93,7 @@ export const events: EventItem[] = [
     category: "Design Competition",
     excerpt:
       "Pixelate is an Intra-IUT digital technical poster design competition focused on STEM topics. Students turn the latest breakthroughs into high-impact visual narratives—making complex engineering concepts impossible to ignore through world-class digital design.",
-    cover: "/placeholders/event-2.jpg",
+    cover: "/events/pix1.jpg",
     gallery: [
       "/placeholders/event-1-1.jpg",
       "/placeholders/event-1-2.jpg",

@@ -12,7 +12,7 @@ export default function MagazinesPreview() {
   const [active, setActive] = useState<MagazineIssue | null>(null);
 
   return (
-    <SectionShell glow="tlbr">
+    <SectionShell glow="trbl">
       <div className="mx-auto max-w-6xl px-4 py-14">
       <div className="flex items-end justify-between gap-4">
         <div>

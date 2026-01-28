@@ -105,7 +105,7 @@ export default function ExecutiveHeadsCarousel() {
     <div className="mt-6">
       <div className="flex items-center justify-between gap-3">
         <div className="text-sm text-muted-fg">
-          Executive batch of 2025-2026
+          Executive batch of 2024-2025
         </div>
 
         <div className="flex items-center gap-2">

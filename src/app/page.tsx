@@ -18,9 +18,9 @@ export default function HomePage() {
       <AnnouncementsPreview />
       <AchievementsPreview />
       <ExecutiveHeadsPreview />
-      <FromTheDeskPreview />
+      {/* <FromTheDeskPreview /> */}
       <MagazinesPreview />
-      <GalleryPreview />
+      {/* <GalleryPreview /> */}
       <Footer />
     </>
   );

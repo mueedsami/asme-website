@@ -84,7 +84,7 @@ export const achievements: AchievementItem[] = [
     slug: "maliha-rahman-champion-elevator-pitch-asme-efx-bangladesh",
     title: "Champion in Elevator Pitch",
     date: "ASME EFX Bangladesh",
-    cover: "/placeholders/event-1.jpg",
+    cover: "/Achievements/malihaEFX.jpg",
     event: {
       name: "ASME EFX Bangladesh",
       organizer: "ASME EFX Bangladesh",
@@ -104,7 +104,7 @@ export const achievements: AchievementItem[] = [
     slug: "team-gang-2nd-runners-up-environmental-case-competition-asme-efx-bangladesh",
     title: "2nd Runners Up in Environmental Case Competition",
     date: "ASME EFX Bangladesh",
-    cover: "/placeholders/event-2.jpg",
+    cover: "/Achievements/malihaEFX.jpg",
     event: {
       name: "Environmental Case Competition",
       organizer: "ASME EFX Bangladesh",
@@ -127,7 +127,7 @@ export const achievements: AchievementItem[] = [
     slug: "tasmiah-zaman-1st-place-asme-e-fest-tech-connect-2025",
     title: "1st Place at ASME E-Fest Tech Connect 2025",
     date: "2025",
-    cover: "/placeholders/event-3.jpg",
+    cover: "/exec/IMG_5129.jpg",
     event: {
       name: "ASME E-Fest Tech Connect 2025",
       organizer: "ASME",
@@ -147,7 +147,7 @@ export const achievements: AchievementItem[] = [
     slug: "mahreen-zaman-top-21-finalist-huawei-seeds-for-the-future-2025",
     title: "Top 21 Finalist at Huawei Seeds for the Future Program 2025",
     date: "2025",
-    cover: "/placeholders/event-4.jpg",
+    cover: "/Achievements/M2.jpg",
     event: {
       name: "Huawei Seeds for the Future Program 2025",
       organizer: "Huawei",
@@ -167,7 +167,7 @@ export const achievements: AchievementItem[] = [
     slug: "istiak-anik-nasseef-kaif-top-5-youth-for-earth-case-solution-championship",
     title: "Top 5 at Youth for Earth: Case Solution Championship",
     date: "Date not specified",
-    cover: "/placeholders/event-5.jpg",
+    cover: "/Achievements/GG.jpg",
     event: {
       name: "Youth for Earth: Case Solution Championship",
       organizer: "Ministry of Youth and Sports",
@@ -191,7 +191,7 @@ export const achievements: AchievementItem[] = [
     slug: "mehrab-islam-nehal-1st-runners-up-energy-fest-1-0",
     title: "1st Runners Up at Energy Fest 1.0",
     date: "Date not specified",
-    cover: "/placeholders/event-6.jpg",
+    cover: "/Achievements/1.jpg",
     event: {
       name: "Energy Fest 1.0",
       organizer: "Event Organizer",
@@ -214,7 +214,7 @@ export const achievements: AchievementItem[] = [
     slug: "mehrab-islam-nehal-runners-up-mind-spark-2024",
     title: "Runners Up at Mind Spark 2024",
     date: "2024",
-    cover: "/placeholders/event-7.jpg",
+    cover: "/Achievements/2.jpg",
     event: {
       name: "Mind Spark 2024 (Ideation into Existence)",
       organizer: "Event Organizer",
@@ -237,7 +237,7 @@ export const achievements: AchievementItem[] = [
     slug: "mehrab-islam-nehal-2nd-runners-up-technomze-1-0-national-tech-fest",
     title: "2nd Runners Up at Technom/ZE 1.0 National Tech Fest",
     date: "Date not specified",
-    cover: "/placeholders/event-8.jpg",
+    cover: "/Achievements/3.jpg",
     event: {
       name: "Technom/ZE 1.0 National Tech Fest",
       organizer: "Event Organizer",

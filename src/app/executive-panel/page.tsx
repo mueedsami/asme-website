@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { executivePanel, ExecMember } from "@/data/executivePanel";
-import SectionShell from "@/components/SectionShell";
+
 
 function initials(name: string) {
   const parts = name.trim().split(" ");
@@ -86,55 +86,68 @@ function buildTeamTree(teamMembers: ExecMember[]) {
 }
 
 function PersonNode({ m, size }: { m: ExecMember; size: "head" | "member" }) {
-  const imgSize = size === "head" ? 84 : 64;
+  const heightClass = size === "head" ? "h-[260px]" : "h-[230px]";
 
   return (
-    <SectionShell glow="trbl">
-      <div className="flex flex-col items-center text-center">
-      <Link
-        href={`/executive-panel/${m.slug}`}
-        className={[
-          "group relative overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition",
-          size === "head" ? "h-[84px] w-[84px]" : "h-[64px] w-[64px]",
-          "hover:shadow-md",
-        ].join(" ")}
-        aria-label={`View profile of ${m.name}`}
-      >
-        {/* initials fallback behind image */}
-        <div className="absolute inset-0 grid place-items-center text-sm font-bold text-muted-fg">
+    <Link
+      href={`/executive-panel/${m.slug}`}
+      className={[
+        "group block w-[220px] overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition",
+        "hover:-translate-y-[1px] hover:shadow-md",
+      ].join(" ")}
+      aria-label={`View profile of ${m.name}`}
+    >
+      <div className={`relative ${heightClass}`}>
+        {/* Fallback initials behind the image (only visible if image missing/broken) */}
+        <div className="absolute inset-0 grid place-items-center bg-muted text-2xl font-bold text-muted-fg">
           {initials(m.name)}
         </div>
 
+        {/* Image */}
         <Image
           src={m.photo}
           alt={m.name}
-          width={imgSize}
-          height={imgSize}
-          className="h-full w-full object-cover"
+          fill
+          className="object-cover"
+          sizes="220px"
+          priority={size === "head"}
         />
-      </Link>
 
-      <div
-        className={[
-          "mt-3 font-semibold text-fg leading-snug",
-          size === "head" ? "text-base" : "text-sm",
-        ].join(" ")}
-      >
-        {m.name}
+        {/* Readability gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.20), rgba(0,0,0,0.00))",
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Text on image */}
+        <div className="absolute left-0 right-0 bottom-0 p-4">
+          <div
+            className={[
+              "font-semibold leading-snug text-white",
+              size === "head" ? "text-base" : "text-sm",
+              "line-clamp-2",
+            ].join(" ")}
+          >
+            {m.name}
+          </div>
+
+          <div className="mt-1 text-xs text-white/80 line-clamp-2">
+            {m.role}
+          </div>
+
+          <div className="mt-3 text-xs font-semibold text-white/90">
+            View details →
+          </div>
+        </div>
       </div>
-
-      <div className="mt-1 text-xs text-muted-fg">{m.role}</div>
-
-      <Link
-        href={`/executive-panel/${m.slug}`}
-        className="mt-2 text-xs font-semibold text-primary hover:underline"
-      >
-        View details
-      </Link>
-    </div>
-    </SectionShell>
+    </Link>
   );
 }
+
 
 export default function ExecutivePanelPage() {
   // --- Desired layout (as requested) ---
@@ -194,18 +207,18 @@ export default function ExecutivePanelPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
       <p className="text-xs font-semibold tracking-widest text-muted-fg uppercase">
-        Executive Panel
+        2024-2025 Session
       </p>
       <h1 className="mt-2 text-3xl font-semibold text-fg">
-        Executive Panel Structure
+        Executive Panel
       </h1>
-      <p className="mt-2 text-muted-fg max-w-3xl">
+      {/* <p className="mt-2 text-muted-fg max-w-3xl">
         Top leadership is shown first in the exact order you set. After that,
         departments are shown in a hierarchy (head → reports).
-      </p>
+      </p> */}
 
       {/* --- Top pattern layout --- */}
-      <div className="mt-10 space-y-10">
+      <div className="mt-10 space-y-6">
         {/* 1 / 2 / 3 (solo) */}
         {topSolo.map((m) => (
           <div key={m.slug} className="flex justify-center">
