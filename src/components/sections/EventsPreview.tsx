@@ -27,8 +27,7 @@ export default function EventsPreview() {
             Recent Activities
           </h2>
           <p className="mt-2 text-sm text-muted-fg max-w-2xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Explore our
-            recent events and initiatives.
+            Recent events and initiatives.
           </p>
         </div>
 

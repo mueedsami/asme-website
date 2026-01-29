@@ -55,7 +55,7 @@ export default function MagazinesPreview() {
               </div>
 
               <div className="shrink-0 rounded-2xl border border-border bg-muted px-3 py-2 text-sm font-semibold text-fg">
-                30 pages
+                {issue.pages}
               </div>
             </div>
 

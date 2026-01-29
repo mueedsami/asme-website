@@ -99,9 +99,9 @@ export default function AnnouncementsPreview() {
           <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-fg">
             Announcements
           </h2>
-          <p className="mt-2 text-sm text-muted-fg max-w-2xl">
+          {/* <p className="mt-2 text-sm text-muted-fg max-w-2xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stay updated with official notices.
-          </p>
+          </p> */}
         </div>
 
         <Link

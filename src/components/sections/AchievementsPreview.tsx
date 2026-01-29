@@ -16,9 +16,9 @@ export default function AchievementsPreview() {
           <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-fg">
             Achievements & Recognition
           </h2>
-          <p className="mt-2 text-sm text-muted-fg max-w-2xl">
+          {/* <p className="mt-2 text-sm text-muted-fg max-w-2xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. A glimpse of awards and recognitions earned by our members.
-          </p>
+          </p> */}
         </div>
 
         <Link
