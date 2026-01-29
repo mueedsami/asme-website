@@ -28,7 +28,7 @@ export const executivePanel: ExecMember[] = [
     name: "Tasmiah Zaman",
     role: "Vice Chair",
     team: "Core",
-    photo: "/exec/IMG_5129.JPG",
+    photo: "/exec/IMG_5129.jpg",
     session: "2025–26",
     order: 2,
     isHead: true,
